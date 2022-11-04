@@ -1,0 +1,37 @@
+#After using sql codes such as create, delete, insert, update it is necessary to comment them so that they are not rented again.
+
+import sqlite3
+
+#connect to sqlite
+mydb = sqlite3.connect('datbase.db')
+
+
+c=mydb.cursor()
+
+#Creat table in sqlite3
+c.execute('''CREATE TABLE table1(
+name INTEGER
+)''')
+
+#insert to table
+c.execute('INSERT INTO table1 VALUES(:name)' , {'name:'name1'})
+#Changes should be saved
+mydb.commit()
+
+#Delete Record
+#Delete the record named name1 from table 1
+c.execute('DELETE FROM table1 WHERE name=:name' , {'name':'name1')
+mydb.commit()
+
+#Update Record
+#Converting the record with the name1 to name2
+c.execute('UPDATE table1 SET name=:newname' , {'name':'name2')
+mydb.commit()
+
+#Select all record from table1 
+c.execute('SELECT * FROM table1')
+#show all slected
+print(c.fetchall())
+#show The first row is selected
+print(c.fetchone())
+
